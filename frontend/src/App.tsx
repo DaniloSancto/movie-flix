@@ -1,10 +1,11 @@
 import './assets/styles/custom.scss';
 import "./App.css";
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <>
-    <h1 className='bg-primary'>Teste</h1>
+      <Navbar/>
     </>
   );
 }
