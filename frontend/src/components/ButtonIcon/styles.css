@@ -8,18 +8,6 @@
   text-transform: uppercase;
 }
 
-.btn-logout {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #000;
-  border: 1px solid #000;
-  border-radius: 10px;
-  width: 100px;
-  height: 30px;
-  text-transform: uppercase;
-}
-
 @media (min-width: 576px) {
   .button-icon-container {
     height: 65px;
