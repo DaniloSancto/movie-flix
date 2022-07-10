@@ -13,6 +13,11 @@
   color: #000;
   font-size: 1em;
 }
+
+.btn-logout h2{
+  font-size: 0.6em;
+}
+
 @media (min-width: 576px) {
   .nav-container {
     padding: 0 25px;
