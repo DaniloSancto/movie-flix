@@ -3,13 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 55px;
   border-radius: 4px;
   text-transform: uppercase;
-}
-
-@media (min-width: 576px) {
-  .button-icon-container {
-    height: 65px;
-  }
 }
