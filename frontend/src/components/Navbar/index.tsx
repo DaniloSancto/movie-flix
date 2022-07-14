@@ -1,13 +1,16 @@
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 const Navbar = () => {
   return (
     <div className="navbar nav-container bg-primary">
       <div className="container-fluid nav-content">
-        <h1 className="nav-logo">MovieFlix</h1>
-        <div className="btn-logout">
+        <Link to="/" className="nav-logo">
+          <h1>MovieFlix</h1>
+        </Link>
+        <Link to="/" className="btn-logout">
           <h2>sair</h2>
-        </div>
+        </Link>
       </div>
     </div>
   );

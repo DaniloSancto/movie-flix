@@ -1,15 +1,11 @@
 import "./assets/styles/custom.scss";
-import Navbar from "./components/Navbar";
-import MoviesDetails from "./pages/MoviesDetails";
 
 import "./App.css";
+import Routes from "./Routes";
 
 function App() {
   return (
-    <>
-      <Navbar />
-      <MoviesDetails/>
-    </>
+    <Routes/>
   );
 }
 

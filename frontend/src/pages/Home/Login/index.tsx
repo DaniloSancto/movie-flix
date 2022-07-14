@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ButtonIcon from "../../../components/ButtonIcon";
 import "./styles.css";
 
@@ -10,7 +11,9 @@ const Login = () => {
           <input placeholder="Email" type="text" />
           <input placeholder="Senha" type="text" />
           <div className="login-btn">
-            <ButtonIcon text={"Fazer Login"} />
+            <Link to="/movies">
+              <ButtonIcon text={"Fazer Login"} />
+            </Link>
           </div>
         </form>
       </div>
