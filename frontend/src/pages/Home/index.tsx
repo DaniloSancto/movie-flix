@@ -5,14 +5,14 @@ import "./styles.css";
 const Home = () => {
   return (
     <div className="home-container">
-      <div className="display-none">
-        <div className="home-content">
-          <h1>Avalie Filmes</h1>
-          <p>Diga o que você achou do seu filme favorito</p>
-          <AuthImage />
-        </div>
+      <div className="auth-banner-container">
+        <h1>Avalie Filmes</h1>
+        <p>Diga o que você achou do seu filme favorito</p>
+        <AuthImage />
       </div>
-      <Login />
+      <div className="auth-login-container">
+        <Login />
+      </div>
     </div>
   );
 };

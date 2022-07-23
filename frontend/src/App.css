@@ -35,8 +35,7 @@ textarea:focus, input:focus, select:focus {
 
 .base-input {
   height: 45px;
-  width: 265px;
-  font-size: 0.35em;
+  font-size: 1em;
   border-radius: 4px;
   border: none;
   padding-left: 10px;

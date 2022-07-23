@@ -3,8 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 55px;
+  height: 100%;
   border-radius: 4px;
+}
+
+.button-icon-container h2 {
+  font-size: 1.4em;
 }
 
 .button-icon{
