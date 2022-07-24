@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { getAuthData, saveAuthData } from "util/auth";
 import { requestBackendLogin } from "util/request";
 import ButtonIcon from "../../../components/ButtonIcon";
 import "./styles.css";
@@ -10,14 +11,18 @@ type FormData = {
 };
 
 const Login = () => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
   const [hasError, setHasError] = useState(false);
 
   const onSubmit = (formData: FormData) => {
-    setHasError(false);
     requestBackendLogin(formData)
       .then((response) => {
-        console.log("SUCESSO", response);
+        saveAuthData(response.data);
+        setHasError(false);
       })
       .catch((e) => {
         setHasError(true);
@@ -30,24 +35,46 @@ const Login = () => {
       <h1>LOGIN</h1>
       {hasError && (
         <div className="alert alert-danger" role="alert">
-        Erro ao tentar efetuar o login!
-      </div>
+          Erro ao tentar efetuar o login!
+        </div>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          {...register("username")}
-          placeholder="Email"
-          className="base-input"
-          type="text"
-          name="username"
-        />
-        <input
-          {...register("password")}
-          placeholder="Senha"
-          className="base-input"
-          type="password"
-          name="password"
-        />
+        <div className="mb-4">
+          <input
+            {...register("username", {
+              required: "Campo obrigatório",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "E-mail inválido",
+              },
+            })}
+            placeholder="Email"
+            className={`base-input w-100 form-control ${
+              errors.username ? "is-invalid" : ""
+            }`}
+            type="text"
+            name="username"
+          />
+          <div className="invalid-feedback d-block">
+            {errors.username?.message}
+          </div>
+        </div>
+        <div className="mb-4">
+          <input
+            {...register("password", {
+              required: "Campo obrigatório",
+            })}
+            placeholder="Senha"
+            className={`base-input w-100 form-control ${
+              errors.password ? "is-invalid" : ""
+            }`}
+            type="password"
+            name="password"
+          />
+          <div className="invalid-feedback d-block">
+            {errors.password?.message}
+          </div>
+        </div>
         <div className="login-submit">
           <ButtonIcon text={"Fazer Login"} />
         </div>

@@ -28,6 +28,13 @@
   margin-bottom: 80px;
 }
 
+.form-control {
+  background-color: #fff;
+}
+
+.form-control:focus {
+  background-color: #fff;
+}
 @media (min-width: 576px) {
   .login-card  {
     padding: 20px 47.5px;
@@ -43,9 +50,6 @@
     margin-bottom: 130px;
   }
 
-  .login-card input {
-    margin-bottom: 30px;
-  }
 
   .login-btn h2 {
     font-size: 0.45em;
