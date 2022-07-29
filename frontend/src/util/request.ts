@@ -1,8 +1,10 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import qs from "qs";
+import { getAuthData } from "./auth";
 
 export const BASE_URL =
-  process.env.REACT_APP_BACKEND_URL ?? "https://movieflix-devsuperior.herokuapp.com";
+  process.env.REACT_APP_BACKEND_URL ??
+  "https://movieflix-devsuperior.herokuapp.com";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? "myclientid";
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? "myclientsecret";
@@ -10,6 +12,17 @@ const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? "myclientsecret";
 type LoginData = {
   username: string;
   password: string;
+};
+
+export const requestBackend = (config: AxiosRequestConfig) => {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: "Bearer " + getAuthData().access_token,
+      }
+    : config.headers;
+
+  return axios({ ...config, baseURL: BASE_URL, headers });
 };
 
 export const requestBackendLogin = (loginData: LoginData) => {

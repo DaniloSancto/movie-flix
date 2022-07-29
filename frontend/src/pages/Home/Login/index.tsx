@@ -22,6 +22,7 @@ const Login = () => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
+        console.log(getAuthData().access_token);
         setHasError(false);
       })
       .catch((e) => {

@@ -1,15 +1,35 @@
+import { AxiosRequestConfig } from "axios";
+import { useEffect, useState } from "react";
+import { Movie } from "types/movie";
+import { SpringPage } from "types/vendor/spring";
+import { requestBackend } from "util/request";
 import "./styles.css";
 
 const Movies = () => {
+  const [page, setPage] = useState<SpringPage<Movie>>();
+
+  useEffect(() => {
+    const params: AxiosRequestConfig = {
+      url: "/movies",
+      withCredentials: true,
+      params: {
+        sort: 
+      },
+    };
+    requestBackend(params).then((response) => {
+      setPage(response.data);
+    });
+  }, []);
+
   return (
     <div className="movies-container">
       <div className="movies-content">
         <h1>Tela listagem de filmes</h1>
-        <div className="alert alert-warning" role="alert">
-          This is a warning alert—check it out!
+        <div>
+          {page?.content.map((item) => (
+            <p key={item.id}>Acessar /movies/{item.id}</p>
+          ))}
         </div>
-        <p>acessar /movies/1</p>
-        <p>acessar /movies/2</p>
       </div>
     </div>
   );
