@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
 import { getAuthData, saveAuthData } from "util/auth";
 import { requestBackendLogin } from "util/request";
 import ButtonIcon from "../../../components/ButtonIcon";
@@ -11,19 +12,19 @@ type FormData = {
 };
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>();
   const [hasError, setHasError] = useState(false);
+
+  const {register, handleSubmit, formState: { errors },} = useForm<FormData>();
+
+  const history = useHistory();
 
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
+        setHasError(false);
         saveAuthData(response.data);
         console.log(getAuthData().access_token);
-        setHasError(false);
+        history.push('/movies');
       })
       .catch((e) => {
         setHasError(true);

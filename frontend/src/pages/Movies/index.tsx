@@ -12,9 +12,6 @@ const Movies = () => {
     const params: AxiosRequestConfig = {
       url: "/movies",
       withCredentials: true,
-      params: {
-        sort: 
-      },
     };
     requestBackend(params).then((response) => {
       setPage(response.data);
